@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskFlow | Smart Task Manager</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <h2 class="logo">Task<span>Flow.</span></h2>
+
+            <div class="nav-title" data-i18n="menu">MENU</div>
+
+            <nav>
+
+                <a href="#" class="nav-link active" data-filter="all">
+                    <i class="fa-solid fa-house"></i>
+                    <span data-i18n="dashboard">Dashboard</span>
+                </a>
+
+                <a href="#" class="nav-link" data-filter="all">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span data-i18n="allTasks">All Tasks</span>
+                </a>
+
+                <a href="#" class="nav-link" data-filter="completed">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span data-i18n="completed">Completed</span>
+                </a>
+
+                <a href="#" class="nav-link" data-filter="pending">
+                    <i class="fa-solid fa-clock"></i>
+                    <span data-i18n="pending">Pending</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-gear"></i>
+                    <span data-i18n="settings">Settings</span>
+                </a>
+
+                <div class="sidebar-footer">
+                    <div class="footer-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+
+                    <div>
+                        <h4>TaskFlow</h4>
+                        <p data-i18n="productivity">Your productivity partner</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Header -->
+            <header class="header">
+
+                <div class="welcome">
+                    <h1 data-i18n="dashboard">Dashboard</h1>
+                    <p data-i18n="welcome">
+                        Manage your tasks and stay productive.
+                    </p>
+                </div>
+
+                <div class="header-actions">
+
+                    <button id="languageBtn" class="language-btn">
+                        🇪🇬 العربية
+                    </button>
+
+                    <div class="profile">
+
+                        <div class="profile-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+
+                        <div class="profile-info">
+                            <h4>Youssef</h4>
+                            <p data-i18n="userRole">User</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- Statistics -->
+            <section class="stats">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <div class="stat-icon blue">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+
+                        <span data-i18n="totalTasks">Total Tasks</span>
+                    </div>
+
+                    <h2 id="totalTasks">0</h2>
+                    <p data-i18n="allYourTasks">All your tasks</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <div class="stat-icon green">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+
+                        <span data-i18n="completed">Completed</span>
+                    </div>
+
+                    <h2 id="completedTasks">0</h2>
+                    <p data-i18n="successfullyDone">Successfully completed</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <div class="stat-icon orange">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+
+                        <span data-i18n="pending">Pending</span>
+                    </div>
+
+                    <h2 id="pendingTasks">0</h2>
+                    <p data-i18n="waitingTasks">Tasks waiting for you</p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Tasks Section -->
+            <section class="tasks-section">
+
+                <div class="tasks-header">
+
+                    <div>
+                        <h2 data-i18n="myTasks">My Tasks</h2>
+
+                        <p data-i18n="organize">
+                            Organize your daily activities.
+                        </p>
+                    </div>
+
+                    <button id="addTaskBtn" class="add-task-btn">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        <span data-i18n="addTask">Add Task</span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- Task Form -->
+                <form class="task-form" id="taskForm">
+
+                    <input
+                        type="text"
+                        id="taskInput"
+                        placeholder="Enter task name..."
+                        data-placeholder="taskPlaceholder"
+                        maxlength="100"
+                        required
+                    >
+
+                    <select id="taskPriority">
+
+                        <option value="Low" data-i18n="low">
+                            Low Priority
+                        </option>
+
+                        <option value="Medium" data-i18n="medium" selected>
+                            Medium Priority
+                        </option>
+
+                        <option value="High" data-i18n="high">
+                            High Priority
+                        </option>
+
+                    </select>
+
+                    <input type="date" id="taskDate">
+
+                    <button type="submit" id="saveTaskBtn">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span data-i18n="saveTask">Save Task</span>
+                    </button>
+
+                    <button type="button" id="cancelTaskBtn" class="cancel-btn">
+                        <span data-i18n="cancel">Cancel</span>
+                    </button>
+
+                </form>
+
+
+                <!-- Task List -->
+                <div class="task-list" id="taskList">
+
+                </div>
+
+            </section>
+
+
+            <!-- Footer -->
+            <footer class="main-footer">
+
+                <p>
+                    © 2026 TaskFlow.
+                    <span data-i18n="footer">All rights reserved.</span>
+                </p>
+
+                <p data-i18n="madeWith">
+                    Made with passion.
+                </p>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
